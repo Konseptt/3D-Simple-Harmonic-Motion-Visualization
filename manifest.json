@@ -4,7 +4,7 @@
     "start_url": ".",
     "display": "standalone",
     "background_color": "#000",
-    "description": "This is a 3D visualization of simple harmonic motion coded by Joon Shakya",
+    "description": "This is a 3D visualization of simple harmonic motion coded by Ranjan Sharma",
     "theme_color": "#000",
     "icons": [
       {
