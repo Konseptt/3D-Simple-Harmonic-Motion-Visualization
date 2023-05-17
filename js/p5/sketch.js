@@ -185,7 +185,7 @@ function draw() {
   push();
   translate(0, -height / 2.25);
   text("Simple Harmonic Motion", 0, 0);
-  text("Coded by: Joon Shakya", 0, txtStd);
+  text("Coded by: Ranjan Sharma", 0, txtStd);
   pop();
 
   push();
