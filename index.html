@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#000000">
+  <meta charset="utf-8">
+  <title>3D SHM Visualization - Ranjan Sharma</title>
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="3D SHM Visualization - Ranjan Sharma" />
+  <meta property="og:description" content="This is a 3D visualization of simple harmonic motion coded by Ranjan Sharma" />
+  <meta property="og:image" content="https://shm.joonshakya.com.np/favicon/thumbnail.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:url" content="https://shm.ranjansharma.info.np/" />
+  <meta property="fb:app_id" content="1265498347173300" />
+  
+  <meta name="application-name" content="3D SHM Visualization">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="3D SHM Visualization">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-status-bar-style" content="black" />
+  <meta name="mobile-web-app-title" content="3D SHM Visualization" />
+  <meta name="msapplication-TileColor" content="#000">
+  <meta name="msapplication-TileImage" content="./favicon/mstile-144x144.png">
+  <meta name="msapplication-config" content="./favicon/browserconfig.xml">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="shortcut icon" href="./favicon/favicon.ico">
+  <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#6671c6">
+  <link rel="icon" type="image/png" sizes="512x512" href="./favicon/android-icon-512x512.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+
+  <link rel="apple-touch-icon" href="./favicon/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-icon-180x180.png">
+
+  <script language="javascript" type="text/javascript" src="./js/p5/p5.min-master-5-21-19.js"></script>
+  <script language="javascript" type="text/javascript" src="./js/p5/p5.dom.min.js"></script>
+
+  <!-- <script language="javascript" type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js"></script> -->
+  <!-- <script language="javascript" type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.dom.min.js"></script> -->
+
+  <script language="javascript" type="text/javascript" src="./js/p5//p5.easycam.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="./css/styles.css?v=1">
+</head>
+
+<body oncontextmenu="return false;">
+
+  <div id="HUD">
+    <table>
+      <tr>
+        <td>Coded by</td>
+        <td class="center"><a href="https://www.ranjansharma.info.np/" class="link-to" target="_blank" rel="nofollow">Ranjan Sharma</a></td>
+      </tr>
+      <tr>
+        <td>Speed</td>
+        <td>
+          <div class="drop">
+            <select id="speedSelector" class="button">
+              <option value="0.25">Very Slow</option>
+              <option value="0.5">Slow</option>
+              <option value="1" selected>Normal</option>
+              <option value="2">Fast</option>
+              <option value="4">Very Fast</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Extra info.</td>
+        <td>
+          <div class="drop">
+            <select id="infoSelector" class="button">
+              <option value="show" selected>Show</option>
+              <option value="hide">Hide</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Auto animate</td>
+        <td>
+          <button onclick="kamGara()" class="button" id="autoAnimBtn">Pause</button>
+        </td>
+      </tr>
+    </table>
+    <div id="toggleHUD">
+      <div id="toggleArrow" class="button" onclick="toggleHUD()">Hide HUD ▲</div>
+      <div id="fpsCount"></div>
+    </div>
+  </div>
+  <script language="javascript" type="text/javascript" src="./js/p5/sketch.js?re=1"></script>
+  <script>
+    var HUDscreen = document.getElementById('HUD');
+    var toggleArrow = document.getElementById('toggleArrow');
+
+    function kamGara() {
+      autoAnimBtn.classList.toggle('false');
+      if (autoAnimBtn.innerHTML == "Pause") {
+        autoAnimBtn.innerHTML = "Play";
+      } else {
+        autoAnimBtn.innerHTML = "Pause";
+      }
+    }
+
+    function toggleHUD() {
+      HUDscreen.classList.toggle('hidden');
+      if (toggleArrow.innerHTML == "Hide HUD ▲") {
+        toggleArrow.innerHTML = "Show HUD ▼";
+      } else {
+        toggleArrow.innerHTML = "Hide HUD ▲";
+      }
+    }
+    
+    window.addEventListener('load', e => {
+        registerSW();
+        function registerSW() { 
+            if ('serviceWorker' in navigator) { 
+                try {
+                    navigator.serviceWorker.register("sw.js"); 
+                } catch (e) {
+                    alert('ServiceWorker registration failed. Sorry about that.'); 
+                }
+            }
+        }
+    });
+  </script>
+</body>
+
+</html>

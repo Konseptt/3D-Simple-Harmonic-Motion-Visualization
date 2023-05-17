@@ -1,0 +1,109 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+  background: rgb(51, 51, 51);
+}
+
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, .05);
+}
+
+canvas {
+  display: block;
+}
+
+#HUD {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: fixed;
+  background: #00000077;
+  top: 10px;
+  left: 10px;
+  color: #fff;
+  transition: all .5s;
+}
+
+#HUD table {
+  margin: 4px 16px;
+}
+
+#HUD table tr {
+  height: 28px;
+}
+
+.button {
+  background-color: #333;
+  color: white;
+  padding: 4px 24px 4px 8px;
+  margin: 2px 0 2px 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+}
+
+.drop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drop:after {
+  content: "\25bc";
+  color: #fff;
+  font-size: 10px;
+  margin-left: -18px;
+  position: static;
+  text-align: center;
+  pointer-events: none;
+}
+
+.button:hover {
+  background-color: #555;
+  cursor: pointer;
+}
+
+.button:active {
+  background-color: #222;
+}
+
+#autoAnimBtn {
+  padding: 4px;
+  cursor: pointer;
+}
+
+.link-to {
+  color: white;
+  padding: 4px 4px 4px 24px;
+}
+
+#toggleHUD {
+  padding: 4px 0;
+  display: flex;
+  position: absolute;
+}
+
+#toggleArrow,
+#fpsCount {
+  padding: 4px 10px;
+  margin: 6px 6px 0 0;
+  width: auto;
+}
+
+#fpsCount {
+  background: #00000077;
+}
+
+#HUD.hidden {
+  transform: translateY(calc(-100% - 10px));
+}
